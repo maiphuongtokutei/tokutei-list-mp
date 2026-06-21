@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: #2A0E20;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.og {
+  width: 1200px;
+  height: 630px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* === Background layers (tông hồng Mai Phương) === */
+.bg-grad {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(232,95,168,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 82% 82%, rgba(224,163,63,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 40% at 15% 70%, rgba(181,55,142,0.10) 0%, transparent 60%),
+    linear-gradient(160deg, #2A0E20 0%, #4A1838 48%, #6E2150 100%);
+}
+
+/* Particles */
+.dot { position: absolute; border-radius: 50%; background: rgba(241,155,201,0.25); }
+.dot:nth-child(1) { width:3px;height:3px;top:15%;left:12%;opacity:.3 }
+.dot:nth-child(2) { width:2px;height:2px;top:25%;left:85%;opacity:.2 }
+.dot:nth-child(3) { width:4px;height:4px;top:70%;left:20%;opacity:.15 }
+.dot:nth-child(4) { width:2px;height:2px;top:60%;left:75%;opacity:.25 }
+.dot:nth-child(5) { width:3px;height:3px;top:35%;left:92%;opacity:.2 }
+.dot:nth-child(6) { width:2px;height:2px;top:80%;left:55%;opacity:.15 }
+.dot:nth-child(7) { width:3px;height:3px;top:12%;left:45%;opacity:.18 }
+.dot:nth-child(8) { width:2px;height:2px;top:50%;left:8%;opacity:.22 }
+
+.top-glow {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(232,95,168,0.6), transparent);
+}
+
+.frame {
+  position: absolute; inset: 20px;
+  border: 1px solid rgba(241,155,201,0.12);
+  border-radius: 16px; pointer-events: none;
+}
+.frame::before {
+  content: ''; position: absolute; top: -1px; left: 80px; right: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,95,168,0.3), transparent);
+}
+
+.content {
+  position: relative; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 0 60px;
+}
+
+.brand-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(232,95,168,0.18), rgba(232,95,168,0.05));
+  border: 1px solid rgba(241,155,201,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Sans JP', sans-serif; font-size: 24px; font-weight: 700;
+  color: #F19BC9; margin-bottom: 24px;
+}
+
+.brand {
+  font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600;
+  letter-spacing: 0.32em; color: rgba(251,239,246,0.45); text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: 'Be Vietnam Pro', sans-serif; font-size: 54px; font-weight: 800;
+  color: #FBEFF6; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.title .pink { color: #F19BC9; }
+.title .gold { color: #E0A33F; }
+
+.jp {
+  font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; font-weight: 400;
+  color: rgba(251,239,246,0.3); letter-spacing: 0.12em; margin-bottom: 24px;
+}
+
+.desc {
+  font-family: 'Be Vietnam Pro', sans-serif; font-size: 17px; font-weight: 400;
+  color: rgba(251,239,246,0.6); line-height: 1.65; max-width: 660px; margin-bottom: 32px;
+}
+
+.tags { display: flex; gap: 12px; align-items: center; }
+.tag {
+  padding: 8px 22px; border-radius: 100px; font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+}
+.tag-nhat { background: rgba(232,95,168,0.10); border: 1px solid rgba(232,95,168,0.3); color: #F19BC9; }
+.tag-kysis { background: rgba(224,163,63,0.10); border: 1px solid rgba(224,163,63,0.3); color: #E0A33F; }
+.tag-zalo {
+  background: linear-gradient(135deg, rgba(232,95,168,0.18), rgba(232,95,168,0.08));
+  border: 1px solid rgba(232,95,168,0.35); color: #F7C2DE; font-weight: 700; letter-spacing: 0.06em;
+}
+.sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(251,239,246,0.18); }
+
+.bottom-bar {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 8px; z-index: 10;
+}
+.bottom-url {
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
+  color: rgba(251,239,246,0.25); letter-spacing: 0.08em;
+}
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="bg-grad"></div>
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="top-glow"></div>
+  <div class="frame"></div>
+
+  <div class="content">
+    <div class="brand-icon">特</div>
+    <div class="brand">MAI PHƯƠNG TOKUTEI</div>
+    <h1 class="title">
+      Danh Sách <span class="pink">Đơn Hàng</span><br>
+      <span class="gold">Tokutei & Kỹ Sư</span> Nhật Bản
+    </h1>
+    <p class="jp">特定技能 · 技術ビザ — 求人リスト</p>
+    <p class="desc">
+      Đơn hàng Tokutei & Kỹ sư đi Nhật, cập nhật thường xuyên<br>
+      Liên hệ Zalo 0367 935 698 để được tư vấn
+    </p>
+    <div class="tags">
+      <span class="tag tag-nhat">Tokutei · 特定技能</span>
+      <div class="sep"></div>
+      <span class="tag tag-kysis">Kỹ Sư · 技術</span>
+      <div class="sep"></div>
+      <span class="tag tag-zalo">Zalo 0367 935 698</span>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="bottom-url">Mai Phương Tokutei</span>
+  </div>
+</div>
+</body>
+</html>

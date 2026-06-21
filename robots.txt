@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /
+
+# Cho phép bot mạng xã hội đọc trang để lấy OG (share Zalo/Facebook/Messenger)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
